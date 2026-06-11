@@ -3,8 +3,23 @@
    920px breakpoint. */
 
 .section {
+  /* Deck-palette corner washes (operator design pass): blue top-left,
+     pink bottom-right, separating the band from the cream sections. */
+  --deck-blue: 220 85% 80%;
+  --deck-pink: 330 80% 86%;
   padding: 118px 0;
-  background: var(--bg);
+  background:
+    radial-gradient(
+      at 0% 0%,
+      hsl(var(--deck-blue) / 0.35) 0px,
+      transparent 40%
+    ),
+    radial-gradient(
+      at 100% 100%,
+      hsl(var(--deck-pink) / 0.35) 0px,
+      transparent 45%
+    ),
+    var(--bg);
 }
 
 .container {

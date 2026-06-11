@@ -6,10 +6,11 @@ import styles from "./audiences.module.css";
  *
  * Server component: all copy is verbatim from the spec and present in the
  * SSR HTML. Three columns (Students / Teachers / Parents), each a frosted
- * product-preview mock card + title + mono eyebrow + 3 bullets with gradient
- * bar separators. Columns reveal with a per-column 0.08s stagger; the closing
- * paragraph reveals after the grid. The preview-card pill is decorative
- * (a styled <span>, not a control).
+ * pitch-deck preview card (white headline pill + gradient accent) + title +
+ * mono eyebrow + 3 dash bullets. Columns reveal with a per-column 0.08s
+ * stagger; cards float gently (desynced); the closing paragraph reveals
+ * after the grid. The preview-card pill is decorative (a styled <span>,
+ * not a control).
  */
 
 type Audience = {
@@ -81,8 +82,10 @@ function PreviewCard({ audience }: { audience: Audience }) {
     <div className={styles.previewCard}>
       <div className={styles.kicker}>{audience.kicker}</div>
       <h4 className={styles.previewHeading}>
-        {audience.headingPlain}{" "}
-        <span className="holo-text">{audience.headingGradient}</span>
+        <span className={styles.headingPill}>
+          {audience.headingPlain}{" "}
+          <span className={styles.accent}>{audience.headingGradient}</span>
+        </span>
       </h4>
       {audience.body !== undefined && (
         <p className={styles.previewBody}>{audience.body}</p>
@@ -90,14 +93,10 @@ function PreviewCard({ audience }: { audience: Audience }) {
       {audience.roster !== undefined && (
         <div className={styles.roster}>
           {audience.roster.map((line) => (
-            <div key={line} className={styles.rosterRow}>
-              <span className={styles.rosterDot} aria-hidden="true" />
-              {line}
-            </div>
+            <div key={line}>{line}</div>
           ))}
         </div>
       )}
-      <div className={styles.divider} aria-hidden="true" />
       <span className={styles.pill}>
         <span aria-hidden="true">▶</span> {audience.pill}
       </span>
