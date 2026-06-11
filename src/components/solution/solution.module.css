@@ -63,13 +63,25 @@
   box-shadow: var(--shadow-m);
 }
 
-/* With-Nuro elevation: soft holo tint overlay + glow (SPEC §4 Solution).
-   The tint is a ::before layer so card content stays on opaque white. */
+/* With-Nuro elevation: holo gradient border + soft outer glow + tint
+   overlay (SPEC §4 Solution). The border is the double-background trick
+   (white padding-box over drifting holo border-box); the tint is a
+   ::before layer so card content stays on opaque white. */
 .cardElevated {
   position: relative;
   overflow: hidden;
-  border-color: var(--hair-2);
-  box-shadow: var(--shadow-m), var(--shadow-holo);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    var(--holo-linear) border-box;
+  background-size:
+    100% 100%,
+    200% 200%;
+  animation: holo-drift 8s ease-in-out infinite;
+  box-shadow:
+    var(--shadow-m),
+    0 18px 56px -12px rgba(167, 199, 255, 0.5),
+    0 6px 22px -6px rgba(232, 191, 230, 0.4);
 }
 
 .cardElevated::before {
