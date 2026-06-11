@@ -1,0 +1,144 @@
+/* Solution section — SPEC §4 Solution, layout per SPEC §3.3/§3.4.
+   Two-column before/after comparison collapsing to 1 col at 920px. */
+
+.section {
+  padding: 118px 0;
+  background: var(--bg);
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+
+/* Eyebrow — JetBrains Mono 12px / 500 / 0.18em caps (SPEC §3.3) */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* H2 — Inter Tight clamp(34px, 4.6vw, 62px) / 700 / -0.032em (SPEC §3.3) */
+.heading {
+  margin-top: 20px;
+  font-size: clamp(34px, 4.6vw, 62px);
+  letter-spacing: -0.032em;
+  line-height: 1.02;
+  color: var(--ink);
+}
+
+/* Lead — Inter clamp(17px, 1.6vw, 20px) (SPEC §3.3) */
+.subLead {
+  margin-top: 24px;
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+/* ── Comparison grid ────────────────────────────────────────── */
+
+.grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 38px 34px;
+  background: var(--surface);
+  border: 1px solid var(--hair);
+  border-radius: var(--r-l);
+  box-shadow: var(--shadow-m);
+}
+
+/* With-Nuro elevation: soft holo tint overlay + glow (SPEC §4 Solution).
+   The tint is a ::before layer so card content stays on opaque white. */
+.cardElevated {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--hair-2);
+  box-shadow: var(--shadow-m), var(--shadow-holo);
+}
+
+.cardElevated::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--holo-radial);
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.cardElevated > * {
+  position: relative;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* ── Item lists ─────────────────────────────────────────────── */
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 4px;
+  color: var(--ink-3); /* X icons — muted ink via currentColor */
+}
+
+.itemCheck {
+  color: var(--ink);
+}
+
+/* ── Single 920px breakpoint (SPEC §3.4) ────────────────────── */
+
+@media (max-width: 920px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  .container {
+    padding: 0 22px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
