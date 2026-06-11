@@ -188,6 +188,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Smooth in-page anchor scrolling (SPEC §4 nav links). Works without JS;
+   neutralized for prefers-reduced-motion in the block at the bottom. */
+html {
+  scroll-behavior: smooth;
+}
+
 a {
   color: inherit;
 }
@@ -371,5 +377,10 @@ html[data-js] [data-reveal]:not([data-shown]) {
   html[data-js] [data-reveal] {
     opacity: 1 !important;
     animation: none !important;
+  }
+
+  /* Anchor jumps are instant when the user prefers reduced motion. */
+  html {
+    scroll-behavior: auto;
   }
 }
