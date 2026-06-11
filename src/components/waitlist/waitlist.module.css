@@ -234,23 +234,29 @@
 
 /* ── Submit + privacy ───────────────────────────────────────── */
 
+/* Black pill, 1:1 with the live nuroai.dev form submit:
+   w-full h-12 rounded-full bg-foreground hover:bg-foreground/90
+   text-background font-semibold text-base. */
 .submit {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 15px 24px;
+  height: 48px;
+  padding: 0 24px;
   font: inherit;
-  font-size: 15.5px;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--ink);
-  background: var(--holo-linear);
-  background-size: 200% 200%;
+  color: hsl(40 33% 96%);
+  background: hsl(222 25% 8%);
   border: 0;
-  border-radius: 12px;
+  border-radius: 999px;
   cursor: pointer;
-  animation: holo-drift 8s ease-in-out infinite;
-  transition: opacity 0.2s var(--ease);
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submit:hover:not(:disabled) {
+  background: hsl(222 25% 8% / 0.9);
 }
 
 .submit:disabled {

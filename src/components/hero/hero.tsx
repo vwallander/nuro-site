@@ -36,7 +36,7 @@ export default function Hero() {
         </Reveal>
         <Reveal eager delay={0.16} className={styles.ctaRow}>
           <a href="#waitlist" className={`${styles.cta} focusable`}>
-            Join the waiting list
+            Join waitlist
             <svg
               width="15"
               height="15"

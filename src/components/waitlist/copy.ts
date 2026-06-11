@@ -42,7 +42,7 @@ export const MESSAGE_PLACEHOLDER =
   "Tell us about your situation, what challenges you face, or what you'd love to see in Nuro...";
 export const MESSAGE_MAX_LENGTH = 1000;
 
-export const SUBMIT_IDLE = "Join the waiting list";
+export const SUBMIT_IDLE = "Join waitlist";
 export const SUBMIT_LOADING = "Submitting...";
 export const PRIVACY_NOTE =
   "We respect your privacy. No spam, just updates about Nuro.";

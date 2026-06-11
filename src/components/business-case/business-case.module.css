@@ -99,12 +99,14 @@
 
 /* Card surface — relative + overflow hidden so the soft holo <Aurora>
    overlay fills and clips to the rounded card. */
+/* Deck-indigo surface (matches the audiences band); copy goes white,
+   the 15M SEK numeral keeps its holo gradient. */
 .card {
   position: relative;
   overflow: hidden;
   padding: 46px 42px 38px;
-  background: var(--surface);
-  border: 1px solid var(--hair);
+  background: #5d55b8;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--r-l);
   box-shadow: var(--shadow-m);
 }
@@ -137,7 +139,7 @@
 .statBody {
   font-size: 15.5px;
   line-height: 1.55;
-  color: var(--ink-2);
+  color: #ffffff;
 }
 
 /* Source attribution — JetBrains Mono 10.5px / 0.06em caps (SPEC §3.3) */
@@ -148,7 +150,7 @@
   font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink-3);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 /* ── Single 920px breakpoint (SPEC §3.4) ────────────────────── */
