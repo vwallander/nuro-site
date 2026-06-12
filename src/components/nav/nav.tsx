@@ -51,26 +51,20 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Mobile menu: Escape or a tap outside the header closes it.
+  // Mobile menu: Escape closes; body scroll locks while the full-screen
+  // panel is open.
   const headerRef = useRef<HTMLElement>(null);
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMenuOpen(false);
     };
-    const onPointer = (e: PointerEvent) => {
-      if (
-        headerRef.current &&
-        !headerRef.current.contains(e.target as Node)
-      ) {
-        setMenuOpen(false);
-      }
-    };
     window.addEventListener("keydown", onKey);
-    document.addEventListener("pointerdown", onPointer);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
-      document.removeEventListener("pointerdown", onPointer);
+      document.body.style.overflow = prevOverflow;
     };
   }, [menuOpen]);
 
@@ -158,8 +152,12 @@ export default function Nav() {
         hidden={!menuOpen}
       >
         <ul className={styles.menuList}>
-          {LEFT_LINKS.map((link) => (
-            <li key={link.href}>
+          {LEFT_LINKS.map((link, i) => (
+            <li
+              key={link.href}
+              className={styles.menuItem}
+              style={{ "--i": i } as React.CSSProperties}
+            >
               <a
                 className={styles.menuLink}
                 href={link.href}
@@ -169,7 +167,10 @@ export default function Nav() {
               </a>
             </li>
           ))}
-          <li>
+          <li
+            className={styles.menuItem}
+            style={{ "--i": LEFT_LINKS.length } as React.CSSProperties}
+          >
             <a
               className={styles.menuLink}
               href="#waitlist"
@@ -180,7 +181,10 @@ export default function Nav() {
           </li>
         </ul>
 
-        <div className={styles.menuSocials}>
+        <div
+          className={`${styles.menuSocials} ${styles.menuItem}`}
+          style={{ "--i": LEFT_LINKS.length + 1 } as React.CSSProperties}
+        >
           <a
             className={styles.social}
             href={INSTAGRAM_URL}
